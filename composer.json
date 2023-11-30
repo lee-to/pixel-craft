@@ -1,0 +1,33 @@
+{
+    "name": "lee-to/pixel-craft",
+    "description": "Laravel route image generator",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Danil Shutsky",
+            "email": "info@cutcode.dev",
+            "homepage": "https://github.com/lee-to"
+        }
+    ],
+    "require": {
+        "php": "^8.0|^8.1|^8.2|^8.3",
+        "intervention/image": "^2.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10",
+        "mockery/mockery": "^1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Leeto\\PixelCraft\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Leeto\\PixelCraft\\PixelCraftServiceProvider"
+            ]
+        }
+    }
+}
