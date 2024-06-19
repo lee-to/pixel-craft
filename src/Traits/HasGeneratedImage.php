@@ -13,13 +13,13 @@ trait HasGeneratedImage
 {
     abstract protected function imageColumn(): string;
 
-    public function makeImage(string $size, string|Methods $method = Methods::RESIZE): string
+    public function makeImage(string $size, string|Methods $method = Methods::RESIZE, ?string $column = null): string
     {
         if(is_string($method)) {
             $method = Methods::tryFrom($method) ?? Methods::RESIZE;
         }
 
-        $value = $this->{$this->imageColumn()};
+        $value = $this->{$column ?? $this->imageColumn()};
 
         if($this->multipleImages()) {
             $value = Arr::first($value);
@@ -28,13 +28,13 @@ trait HasGeneratedImage
         return $this->imageUrl($value, $size, $method);
     }
 
-    public function makeImages(string $size, string|Methods $method = Methods::RESIZE): Collection
+    public function makeImages(string $size, string|Methods $method = Methods::RESIZE, ?string $column = null): Collection
     {
         if(is_string($method)) {
             $method = Methods::tryFrom($method) ?? Methods::RESIZE;
         }
 
-        return $this->{$this->imageColumn()}
+        return $this->{$column ?? $this->imageColumn()}
             ->map(fn($value) => $this->imageUrl($value, $size, $method));
     }
 
